@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import ExampleOne from "./ex_one/ExampleOne";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <main className="container-fluid">
+      <div className="d-flex flex-column justify-items-center align-items-center py-5 w-100">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <h1 className="fs-3 fw-bold font-monospace text-decoration-underline">Learning Reactive Search</h1>
+        <hr />
+        <ExampleOne />
+      </div>
+    </main>
   );
 }
 
