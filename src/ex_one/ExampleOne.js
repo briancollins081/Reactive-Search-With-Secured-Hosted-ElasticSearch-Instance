@@ -94,7 +94,7 @@ const ExampleOne = () => {
       <ReactiveList.ResultListWrapper>
         <ResultList key={searchItem._id}>
           <ResultList.Image
-            style={{ height: "100px", width: "200px", backgroundSize: "cover" }}
+            style={{ height: "100px", width: "200px", minWidth: "200px", backgroundSize: "cover", backgroundColor:"#f3f3f3"}}
             src={imageUrl}
           />
           <ResultList.Content>
