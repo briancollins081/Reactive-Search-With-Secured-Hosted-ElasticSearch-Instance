@@ -9,49 +9,106 @@ import {
 import parseHTML from "html-react-parser";
 import {
   DAYS_OF_THE_WEEEK,
-  ELASTIC_INDICES,
   ELASTIC_INDICES_FILTERS_MAPPING,
+  ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME,
   MONTH_OF_THE_YEAR,
 } from "../consts";
 
 const ExampleOne = () => {
   const onData = (searchItem) => {
-    // console.log(searchItem);
-    // return <div>{parseHTML(searchItem.post)}</div>
-    // Check data and extract your information here i.e. images, stars, ratings, authors
-    const imageUrl =
+    console.log(searchItem.searchIndex);
+    let imageUrl =
       "https://twaa.s3.fr-par.scw.cloud/posts/7523740510212292292903089790949086898421760o.jpg";
+    let searchTitle = "<p>TWAA content item</p>";
+    let userProfilePicture = "https://twaa.s3.fr-par.scw.cloud/default.png";
+    let twaaUsername = "TWAA User";
+    let userName = "@anonymous";
+    const searchIndex = searchItem.searchIndex;
+    userProfilePicture = searchItem?.User?.profilepicture || userProfilePicture;
+    twaaUsername = searchItem?.User?.twaausername || twaaUsername;
+    userName = searchItem?.User?.username || userName;
+    // eslint-disable-next-line default-case
+    switch (searchIndex) {
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.articles:
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.timelineposts:
+        imageUrl = searchItem.mediaurl;
+        searchTitle = searchItem.post;
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.counsellors:
+        imageUrl = searchItem.profilepicture;
+        searchTitle = "<p>TWAA counsellor profile</p>";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.events:
+        imageUrl = searchItem.eventBanner;
+        searchTitle = searchItem.eventName;
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.forums:
+        imageUrl = searchItem.posterimage;
+        searchTitle = searchItem.name + ":" + searchItem.about;
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsopen:
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsprivate:
+        imageUrl = searchItem.groupbanner;
+        searchTitle =
+          searchItem.groupName +
+            ":" +
+            searchItem.mentorshipGroupDetail?.introduction || "";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentees:
+        imageUrl = searchItem.profilepicture;
+        searchTitle = "<p>TWAA mentee profile</p>";
+        break;
+
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentors:
+        imageUrl = searchItem.profilepicture;
+        searchTitle = "<p>TWAA mentor profile</p>";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.organizations:
+        imageUrl = searchItem.coverphoto;
+        searchTitle = "<p>TWAA mentorship groups</p>";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.speakers:
+        imageUrl = searchItem.profilepicture;
+        searchTitle = "<p>TWAA speaker profile</p>";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreproducts:
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreservices:
+        imageUrl = searchItem.featuredphoto;
+        searchTitle = searchItem.title;
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.twaabooks:
+        imageUrl = searchItem.cover;
+        searchTitle = searchItem.name;
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.users:
+        imageUrl = searchItem.profilepicture;
+        searchTitle = "<p>General TWAA users</p>";
+        break;
+      case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.videos:
+        imageUrl = searchItem.mediathumbnail;
+        searchTitle = searchItem.post;
+        break;
+    }
 
     return (
       <ReactiveList.ResultListWrapper>
         <ResultList key={searchItem._id}>
           <ResultList.Image
-            src={searchItem.mediaurl || searchItem.mediathumbnail || imageUrl}
+            style={{ height: "100px", width: "200px", backgroundSize: "cover" }}
+            src={imageUrl}
           />
           <ResultList.Content>
             <ResultList.Title>
-              {parseHTML(searchItem.post || <p>Item data</p>)}
+              {parseHTML(searchTitle || <p>Item data</p>)}
             </ResultList.Title>
             <ResultList.Description>
               <div className="row">
-                <div className="d-flex justify-content-start mb-2">
-                  <div className="text-muted">
-                    <i className="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;
-                    {searchItem.PostLikes.length}
-                  </div>
-                  &nbsp;
-                  <div className="text-muted">
-                    <i className="fa fa-comments" aria-hidden="true"></i>&nbsp;
-                    {searchItem.PostComments.length}
-                  </div>
-                </div>
-
                 <figure
                   class="figure d-flex justify-content-space-evenly"
                   style={{ width: "12rem" }}
                 >
                   <img
-                    src={searchItem.User.profilepicture}
+                    src={userProfilePicture}
                     class="figure-img img-rounded rounded"
                     alt="..."
                     style={{
@@ -60,8 +117,8 @@ const ExampleOne = () => {
                     }}
                   />
                   <figcaption class="figure-caption text-start pl-2">
-                    <p>@{searchItem.User.twaausername}</p>
-                    <p>{searchItem.User.username}</p>
+                    <p>@{twaaUsername}</p>
+                    <p>{userName}</p>
                   </figcaption>
                 </figure>
               </div>
@@ -98,7 +155,7 @@ const ExampleOne = () => {
       >
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
           <a className="navbar-brand" href="#">
-            Yelp Search
+            ABC Search
           </a>
 
           <button
@@ -221,12 +278,15 @@ const ExampleOne = () => {
               />
             </div>
           </div>
-          <div className="col-12 col-lg-6 col-md-6 col-sm-8 scroll">
+          <div
+            className="col-12 col-lg-6 col-md-6 col-sm-8 scroll position-relative"
+            style={{ minHeight: "calc(100vh - 80px)" }}
+          >
             <ReactiveList
               componentId="queryResult"
               dataField={["*"]}
               from={0}
-              size={15}
+              size={6}
               renderItem={onData}
               pagination={true}
               react={{
@@ -249,7 +309,7 @@ const ExampleOne = () => {
               )}
             />
           </div>
-          <div className="col-8 col-lg-3 col-md-3 col-sm-6 scroll">
+          <div className="col-8 col-lg-3 col-md-3 col-sm-6 scroll position-relative">
             <div className="box mt-4">
               <MultiList
                 dataField="searchIndex"
@@ -260,6 +320,7 @@ const ExampleOne = () => {
                 showSearch={false}
                 selectAllLabel="All Categories"
                 filterLabel="Item Category"
+                sortBy="asc"
                 react={{
                   and: ["nameReactor"],
                 }}
