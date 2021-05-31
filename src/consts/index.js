@@ -24,7 +24,7 @@ export const MONTH_OF_THE_YEAR = {
 };
 
 // These two lists must match to be used in code
-/* exports.ELASTIC_INDICES_FILTERS_MAPPING = { // from backend mapping
+export const ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME = { // from backend mapping
   articles: 1,
   counsellors: 2,
   events: 3,
@@ -41,7 +41,7 @@ export const MONTH_OF_THE_YEAR = {
   twaabooks: 14,
   users: 15,
   videos: 16,
-}; */
+};
 export const ELASTIC_INDICES_FILTERS_MAPPING = {
    1:"Articles",
    2:"Counsellors",
@@ -53,7 +53,7 @@ export const ELASTIC_INDICES_FILTERS_MAPPING = {
    8:"Mentors",
    9:"Organizations",
    10:"Speakers",
-   11:"Timelineposts",
+   11:"Timeline Posts",
    12:"Tstore Products",
    13:"Tstore Services",
    14:"Books",
