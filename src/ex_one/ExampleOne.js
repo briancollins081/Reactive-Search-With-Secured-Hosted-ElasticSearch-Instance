@@ -7,7 +7,12 @@ import {
   ResultList,
 } from "@appbaseio/reactivesearch";
 import parseHTML from "html-react-parser";
-import { DAYS_OF_THE_WEEEK, MONTH_OF_THE_YEAR } from "../consts";
+import {
+  DAYS_OF_THE_WEEEK,
+  ELASTIC_INDICES,
+  ELASTIC_INDICES_FILTERS_MAPPING,
+  MONTH_OF_THE_YEAR,
+} from "../consts";
 
 const ExampleOne = () => {
   const onData = (searchItem) => {
@@ -24,7 +29,9 @@ const ExampleOne = () => {
             src={searchItem.mediaurl || searchItem.mediathumbnail || imageUrl}
           />
           <ResultList.Content>
-            <ResultList.Title>{parseHTML(searchItem.post)}</ResultList.Title>
+            <ResultList.Title>
+              {parseHTML(searchItem.post || <p>Item data</p>)}
+            </ResultList.Title>
             <ResultList.Description>
               <div className="row">
                 <div className="d-flex justify-content-start mb-2">
@@ -67,8 +74,8 @@ const ExampleOne = () => {
   return (
     <div className="container-fluid">
       <ReactiveBase
-        // app="articles,counsellors,events,forums,groupsopen,groupsprivate,mentees,mentors,organizations,speakers,timelineposts,tstoreproducts,tstoreservices,twaabooks,users,videos"
-        app="timelineposts"
+        app="articles,counsellors,events,forums,groupsopen,groupsprivate,mentees,mentors,organizations,speakers,timelineposts,tstoreproducts,tstoreservices,twaabooks,users,videos"
+        // app="timelineposts"
         url={`http://127.0.0.1:9200`}
         // credentials={`${process.env.REACT_APP_ELASTIC_USER_NAME}:${process.env.REACT_APP_ELASTIC_USER_PASSWORD}`}
         // credentials={"elastic:bR4GQWvXFpL8tPrD9Jjd"}
@@ -112,7 +119,7 @@ const ExampleOne = () => {
                 componentId="nameReactor"
                 placeholder="Search Zara"
                 dataField={["*"]}
-                defaultValue={"Zara"}
+                // defaultValue={"Zara"}
                 highlightField="post"
                 autosuggest={true}
                 searchInputId="NameSearch"
@@ -179,6 +186,7 @@ const ExampleOne = () => {
                 showSearch={false}
                 selectAllLabel="All Months"
                 filterLabel="Creation Month"
+                sortBy="asc"
                 react={{
                   and: ["nameReactor"],
                 }}
@@ -200,6 +208,7 @@ const ExampleOne = () => {
                 showSearch={false}
                 selectAllLabel="All Days"
                 filterLabel="Creation Days"
+                sortBy="asc"
                 react={{
                   and: ["nameReactor"],
                 }}
@@ -225,12 +234,8 @@ const ExampleOne = () => {
                   "creationYearReactor",
                   "creationMonthReactor",
                   "creationDayReactor",
-                  "deliveringNowReactor",
-                  "bookingReactor",
-                  "deliveryReactor",
-                  "tableBookinReactor",
+                  "searchCategoryReactor",
                   "nameReactor",
-                  "RangeSliderSensor",
                 ],
               }}
               renderError={(error) => (
@@ -244,8 +249,28 @@ const ExampleOne = () => {
               )}
             />
           </div>
-          <div className="col-lg-3 col-md-3 col-sm-6">
-            
+          <div className="col-8 col-lg-3 col-md-3 col-sm-6 scroll">
+            <div className="box mt-4">
+              <MultiList
+                dataField="searchIndex"
+                title="Search Categories"
+                componentId="searchCategoryReactor"
+                placeholder="Filter by Category"
+                showFilter={false}
+                showSearch={false}
+                selectAllLabel="All Categories"
+                filterLabel="Item Category"
+                react={{
+                  and: ["nameReactor"],
+                }}
+                renderItem={(label, count, isSelected) => (
+                  <div className="d-flex justify-content-between w-100">
+                    <div>{ELASTIC_INDICES_FILTERS_MAPPING[+label]}</div>
+                    <div className="ml-auto text-muted">{count}</div>
+                  </div>
+                )}
+              />
+            </div>
           </div>
         </div>
       </ReactiveBase>
