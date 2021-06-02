@@ -1,21 +1,8 @@
-.App-logo {
-  height: 10vmin;
-  pointer-events: none;
+.applicationLogo {
+  height: 40px;
+  width: 80px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cursor_pointer {
+  cursor: pointer !important;
 }
