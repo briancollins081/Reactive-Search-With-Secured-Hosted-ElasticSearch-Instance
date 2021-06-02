@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useHistory } from "react-router-dom";
 import {
   DataSearch,
   MultiList,
@@ -15,14 +16,16 @@ import {
 } from "../../consts";
 
 const SearchWrapper = () => {
+  const history = useHistory();
+
   const onData = (searchItem) => {
-    console.log(searchItem.searchIndex);
     let imageUrl =
       "https://twaa.s3.fr-par.scw.cloud/posts/7523740510212292292903089790949086898421760o.jpg";
     let searchTitle = "<p>TWAA content item</p>";
     let userProfilePicture = "https://twaa.s3.fr-par.scw.cloud/default.png";
     let twaaUsername = "TWAA User";
     let userName = "@anonymous";
+    let itemPath = "/";
     const searchIndex = searchItem.searchIndex;
     userProfilePicture = searchItem?.User?.profilepicture || userProfilePicture;
     twaaUsername = searchItem?.User?.twaausername || twaaUsername;
@@ -33,70 +36,104 @@ const SearchWrapper = () => {
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.timelineposts:
         imageUrl = searchItem.mediaurl;
         searchTitle = searchItem.post;
+        itemPath = "/timeline/posts/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.counsellors:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA counsellor profile</p>";
+        itemPath = "/viewprofile/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.events:
         imageUrl = searchItem.eventBanner;
         searchTitle = searchItem.eventName;
+        itemPath = "/eventdetails/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.forums:
         imageUrl = searchItem.posterimage;
-        searchTitle = searchItem.name + ":" + searchItem.about;
+        searchTitle = searchItem.name + ": " + searchItem.about;
+        itemPath = "/discussions/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsopen:
+        imageUrl = searchItem.groupbanner;
+        searchTitle =
+          searchItem.groupName +
+            ": " +
+            searchItem.mentorshipGroupDetail?.introduction || "";
+        itemPath = "/grouptimeline/" + searchItem.id;
+        break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsprivate:
         imageUrl = searchItem.groupbanner;
         searchTitle =
           searchItem.groupName +
-            ":" +
+            ": " +
             searchItem.mentorshipGroupDetail?.introduction || "";
+        itemPath = "#";
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentees:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA mentee profile</p>";
+        itemPath = "/viewprofile/" + searchItem.id;
         break;
 
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentors:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA mentor profile</p>";
+        itemPath = "/viewprofile/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.organizations:
         imageUrl = searchItem.coverphoto;
         searchTitle = "<p>TWAA mentorship groups</p>";
+        itemPath = "/aboutorganization/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.speakers:
-        imageUrl = searchItem.profilepicture;
-        searchTitle = "<p>TWAA speaker profile</p>";
+        imageUrl = searchItem.speakerbanner;
+        searchTitle = searchItem.name + ": " + searchItem.topics;
+        itemPath = "/speakerprofile/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreproducts:
+        imageUrl = searchItem.featuredphoto;
+        searchTitle = searchItem.title;
+        itemPath = "/tstore/products/" + searchItem.id;
+        break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreservices:
         imageUrl = searchItem.featuredphoto;
         searchTitle = searchItem.title;
+        itemPath = "/tstore/services/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.twaabooks:
         imageUrl = searchItem.cover;
         searchTitle = searchItem.name;
+        itemPath = "/books/details/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.users:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>General TWAA users</p>";
+        itemPath = "/viewprofile/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.videos:
         imageUrl = searchItem.mediathumbnail;
         searchTitle = searchItem.post;
+        itemPath = "/viewvideo/" + searchItem.id;
         break;
     }
-
     return (
       <ReactiveList.ResultListWrapper>
-        <ResultList key={searchItem._id} className="cursor_pointer" onClick={()=>alert(90)}>
+        <ResultList
+          key={searchItem._id}
+          className="cursor_pointer"
+          onClick={() => {
+            history.push(itemPath);
+          }}
+        >
           <ResultList.Image
-            style={{ height: "100px", width: "200px", minWidth: "200px", backgroundSize: "cover", backgroundColor:"#f3f3f3"}}
-            src={imageUrl}
-            
+            style={{
+              height: "100px",
+              width: "200px",
+              minWidth: "200px",
+              backgroundSize: "cover",
+              backgroundColor: "#f3f3f3",
+            }}
+            src={imageUrl || "#"}
           />
           <ResultList.Content>
             <ResultList.Title>
@@ -156,7 +193,11 @@ const SearchWrapper = () => {
       >
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
           <a className="navbar-brand" href="#">
-             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.08 67.19" className="applicationLogo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 115.08 67.19"
+              className="applicationLogo"
+            >
               <defs>
                 <style>
                   {
