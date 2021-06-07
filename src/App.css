@@ -6,3 +6,11 @@
 .cursor_pointer {
   cursor: pointer !important;
 }
+
+.color-primary{
+  color: #00529c;
+}
+.color-secondary{
+  color: #d5a10f;
+}
+

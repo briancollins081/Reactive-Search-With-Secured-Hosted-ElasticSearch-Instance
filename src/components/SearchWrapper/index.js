@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   DataSearch,
   MultiList,
@@ -106,8 +106,11 @@ const SearchWrapper = () => {
         itemPath = "/books/details/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.users:
-        imageUrl = searchItem.profilepicture;
-        searchTitle = "<p>General TWAA users</p>";
+        userProfilePicture = searchItem.profilepicture;
+        twaaUsername = searchItem?.twaausername;
+        userName = searchItem?.username;
+        imageUrl = searchItem?.profilepicture;
+        searchTitle = `<p>TWAA User: ${searchItem.username}</p>`;
         itemPath = "/viewprofile/" + searchItem.id;
         break;
       case ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.videos:
@@ -171,7 +174,7 @@ const SearchWrapper = () => {
       <ReactiveBase
         app="articles,counsellors,events,forums,groupsopen,groupsprivate,mentees,mentors,organizations,speakers,timelineposts,tstoreproducts,tstoreservices,twaabooks,users,videos"
         // app="timelineposts"
-        url={`http://127.0.0.1:9200`}
+        url={process.env.REACT_APP_ELASTIC_SEARCH_ENDPOINT}
         // credentials={`${process.env.REACT_APP_ELASTIC_USER_NAME}:${process.env.REACT_APP_ELASTIC_USER_PASSWORD}`}
         // credentials={"elastic:bR4GQWvXFpL8tPrD9Jjd"}
         // headers={{
@@ -192,7 +195,7 @@ const SearchWrapper = () => {
         }}
       >
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 115.08 67.19"
@@ -228,7 +231,7 @@ const SearchWrapper = () => {
                 </g>
               </g>
             </svg>
-          </a>
+          </Link>
 
           <button
             className="navbar-toggler"
@@ -268,24 +271,22 @@ const SearchWrapper = () => {
             </div>
           </div>
           <div className="links">
-            <a
-              target="_blank"
-              href="https://github.com/appbaseio/reactivesearch"
-              className="btn text-primary"
+            <Link
+              to="/"
+              className="btn text-primary twaabluecolor"
               rel="noreferrer"
             >
-              <i className="fab fa-github"></i>&nbsp; Github
-            </a>
+              <i class="fa fa-envelope-open" aria-hidden="true"></i>&nbsp;Timeline
+            </Link>
             &nbsp;&nbsp;
-            <a
-              target="_blank"
-              href="https://opensource.appbase.io/reactive-manual/"
+            <Link
+              to="/myprofile"
               className="btn text-primary"
               rel="noreferrer"
             >
-              <i className="fas fa-book" aria-hidden="true" />
-              &nbsp;Documentation
-            </a>
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              &nbsp;My Profile
+            </Link>
           </div>
         </nav>
         <div className="row">
