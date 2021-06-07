@@ -6,7 +6,7 @@
   },
   "description": "This is a react implementation of the reactive search module. Mainly it a personal custom module for use in y personal projects.",
   "keywords": ["react", "reactive-search", "elasticsearch"],
-  "version": "0.1.1",
+  "version": "0.1.11",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",

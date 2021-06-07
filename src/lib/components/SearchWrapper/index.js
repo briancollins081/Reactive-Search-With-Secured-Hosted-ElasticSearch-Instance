@@ -14,8 +14,8 @@ import {
   ELASTIC_INDICES_FILTERS_MAPPING,
   ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME,
   MONTH_OF_THE_YEAR,
-} from "../../consts";
-
+} from "../../consts/index";
+import "../styles/main.css";
 const SearchWrapper = ({
   ELASTIC_SEARCH_APP_URL,
   ELASTIC_SEARCH_API_KEY,

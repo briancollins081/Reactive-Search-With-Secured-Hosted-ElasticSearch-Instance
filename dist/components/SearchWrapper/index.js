@@ -13,7 +13,7 @@ var _reactivesearch = require("@appbaseio/reactivesearch");
 
 var _htmlReactParser = _interopRequireDefault(require("html-react-parser"));
 
-var _consts = require("../../consts");
+var _index = require("../../consts/index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,86 +46,86 @@ const SearchWrapper = _ref => {
     userName = (searchItem === null || searchItem === void 0 ? void 0 : (_searchItem$User3 = searchItem.User) === null || _searchItem$User3 === void 0 ? void 0 : _searchItem$User3.username) || userName; // eslint-disable-next-line default-case
 
     switch (searchIndex) {
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.articles:
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.timelineposts:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.articles:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.timelineposts:
         imageUrl = searchItem.mediaurl;
         searchTitle = searchItem.post;
         itemPath = "/timeline/posts/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.counsellors:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.counsellors:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA counsellor profile</p>";
         itemPath = "/viewprofile/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.events:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.events:
         imageUrl = searchItem.eventBanner;
         searchTitle = searchItem.eventName;
         itemPath = "/eventdetails/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.forums:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.forums:
         imageUrl = searchItem.posterimage;
         searchTitle = searchItem.name + ": " + searchItem.about;
         itemPath = "/discussions/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsopen:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsopen:
         imageUrl = searchItem.groupbanner;
         searchTitle = searchItem.groupName + ": " + ((_searchItem$mentorshi = searchItem.mentorshipGroupDetail) === null || _searchItem$mentorshi === void 0 ? void 0 : _searchItem$mentorshi.introduction) || "";
         itemPath = "/grouptimeline/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsprivate:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.groupsprivate:
         imageUrl = searchItem.groupbanner;
         searchTitle = searchItem.groupName + ": " + ((_searchItem$mentorshi2 = searchItem.mentorshipGroupDetail) === null || _searchItem$mentorshi2 === void 0 ? void 0 : _searchItem$mentorshi2.introduction) || "";
         itemPath = "#";
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentees:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentees:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA mentee profile</p>";
         itemPath = "/viewprofile/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentors:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.mentors:
         imageUrl = searchItem.profilepicture;
         searchTitle = "<p>TWAA mentor profile</p>";
         itemPath = "/viewprofile/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.organizations:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.organizations:
         imageUrl = searchItem.coverphoto;
         searchTitle = "<p>TWAA mentorship groups</p>";
         itemPath = "/aboutorganization/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.speakers:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.speakers:
         imageUrl = searchItem.speakerbanner;
         searchTitle = searchItem.name + ": " + searchItem.topics;
         itemPath = "/speakerprofile/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreproducts:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreproducts:
         imageUrl = searchItem.featuredphoto;
         searchTitle = searchItem.title;
         itemPath = "/tstore/products/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreservices:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.tstoreservices:
         imageUrl = searchItem.featuredphoto;
         searchTitle = searchItem.title;
         itemPath = "/tstore/services/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.twaabooks:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.twaabooks:
         imageUrl = searchItem.cover;
         searchTitle = searchItem.name;
         itemPath = "/books/details/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.users:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.users:
         userProfilePicture = searchItem.profilepicture;
         twaaUsername = searchItem === null || searchItem === void 0 ? void 0 : searchItem.twaausername;
         userName = searchItem === null || searchItem === void 0 ? void 0 : searchItem.username;
@@ -134,7 +134,7 @@ const SearchWrapper = _ref => {
         itemPath = "/viewprofile/" + searchItem.id;
         break;
 
-      case _consts.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.videos:
+      case _index.ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME.videos:
         imageUrl = searchItem.mediathumbnail;
         searchTitle = searchItem.post;
         itemPath = "/viewvideo/" + searchItem.id;
@@ -295,7 +295,7 @@ const SearchWrapper = _ref => {
     },
     renderItem: (label, count, isSelected) => /*#__PURE__*/_react.default.createElement("div", {
       className: "d-flex justify-content-between w-100"
-    }, /*#__PURE__*/_react.default.createElement("div", null, _consts.MONTH_OF_THE_YEAR[+label]), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("div", null, _index.MONTH_OF_THE_YEAR[+label]), /*#__PURE__*/_react.default.createElement("div", {
       className: "ml-auto text-muted"
     }, count))
   })), /*#__PURE__*/_react.default.createElement("div", {
@@ -315,7 +315,7 @@ const SearchWrapper = _ref => {
     },
     renderItem: (label, count, isSelected) => /*#__PURE__*/_react.default.createElement("div", {
       className: "d-flex justify-content-between w-100"
-    }, /*#__PURE__*/_react.default.createElement("div", null, _consts.DAYS_OF_THE_WEEEK[+label]), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("div", null, _index.DAYS_OF_THE_WEEEK[+label]), /*#__PURE__*/_react.default.createElement("div", {
       className: "ml-auto text-muted"
     }, count))
   }))), /*#__PURE__*/_react.default.createElement("div", {
@@ -353,7 +353,7 @@ const SearchWrapper = _ref => {
     },
     renderItem: (label, count, isSelected) => /*#__PURE__*/_react.default.createElement("div", {
       className: "d-flex justify-content-between w-100"
-    }, /*#__PURE__*/_react.default.createElement("div", null, _consts.ELASTIC_INDICES_FILTERS_MAPPING[+label]), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("div", null, _index.ELASTIC_INDICES_FILTERS_MAPPING[+label]), /*#__PURE__*/_react.default.createElement("div", {
       className: "ml-auto text-muted"
     }, count))
   }))))));
