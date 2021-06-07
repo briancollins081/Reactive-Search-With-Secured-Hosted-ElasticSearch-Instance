@@ -15,6 +15,7 @@ import {
   ELASTIC_INDICES_FILTERS_MAPPING_BY_NAME,
   MONTH_OF_THE_YEAR,
 } from "../../consts/index";
+
 import "../styles/main.css";
 const SearchWrapper = ({
   ELASTIC_SEARCH_APP_URL,
@@ -283,7 +284,7 @@ const SearchWrapper = ({
             </Link>
           </div>
         </nav>
-        <div className="row">
+        <div className="row bg-white">
           <div className="col-8 col-lg-3 col-md-3 col-sm-4 scroll">
             <div className="box mt-4">
               <MultiList
