@@ -4,7 +4,7 @@ import SearchWrapper from "./components/SearchWrapper";
 function App() {
   return (
     <main className="container-fluid">
-        <SearchWrapper />
+      <SearchWrapper />
     </main>
   );
 }
