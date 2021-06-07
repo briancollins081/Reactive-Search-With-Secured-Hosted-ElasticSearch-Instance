@@ -263,7 +263,7 @@ const SearchWrapper = _ref => {
     class: "fa fa-user-circle",
     "aria-hidden": "true"
   }), "\xA0My Profile"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "row"
+    className: "row bg-white"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-8 col-lg-3 col-md-3 col-sm-4 scroll"
   }, /*#__PURE__*/_react.default.createElement("div", {

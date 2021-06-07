@@ -17,6 +17,7 @@ import {
 } from "../../consts/index";
 
 import "../styles/main.css";
+
 const SearchWrapper = ({
   ELASTIC_SEARCH_APP_URL,
   ELASTIC_SEARCH_API_KEY,
@@ -135,18 +136,9 @@ const SearchWrapper = ({
             history.push(itemPath);
           }}
         >
-          <ResultList.Image
-            style={{
-              height: "100px",
-              width: "200px",
-              minWidth: "200px",
-              backgroundSize: "cover",
-              backgroundColor: "#f3f3f3",
-            }}
-            src={imageUrl || "#"}
-          />
+          <ResultList.Image className="searchCardImg" src={imageUrl || "#"} />
           <ResultList.Content>
-            <ResultList.Title>
+            <ResultList.Title className="text-dec-none">
               {parseHTML(searchTitle || <p>Item data</p>)}
             </ResultList.Title>
             <ResultList.Description>
@@ -157,14 +149,10 @@ const SearchWrapper = ({
                 >
                   <img
                     src={userProfilePicture}
-                    class="figure-img img-rounded rounded"
+                    class="figure-img searchUserProfile"
                     alt="..."
-                    style={{
-                      width: "3rem",
-                      marginRight: "8px",
-                    }}
                   />
-                  <figcaption class="figure-caption text-start pl-2">
+                  <figcaption class="figure-caption text-start pl-2 text-dec-none">
                     <p>@{twaaUsername}</p>
                     <p>{userName}</p>
                   </figcaption>
@@ -192,7 +180,7 @@ const SearchWrapper = ({
           };
         }}
       >
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white px-4">
           <Link className="navbar-brand" href="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"

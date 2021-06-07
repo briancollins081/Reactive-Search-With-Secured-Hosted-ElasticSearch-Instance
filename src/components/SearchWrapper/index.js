@@ -183,7 +183,7 @@ const SearchWrapper = () => {
           };
         }}
       >
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white px-4">
           <Link className="navbar-brand" href="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
