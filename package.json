@@ -10,7 +10,7 @@
     "reactive-search",
     "elasticsearch"
   ],
-  "version": "0.1.13",
+  "version": "0.1.14-beta",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -55,7 +55,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "andere-npm-test-app": "^0.1.1",
-    "bootstrap": "4.6.0",
+    "bootstrap": "^4.6.0",
     "html-react-parser": "^1.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

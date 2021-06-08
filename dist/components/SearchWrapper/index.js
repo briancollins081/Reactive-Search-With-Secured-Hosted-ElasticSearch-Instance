@@ -150,15 +150,11 @@ const SearchWrapper = _ref => {
         history.push(itemPath);
       }
     }, /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Image, {
-      style: {
-        height: "100px",
-        width: "200px",
-        minWidth: "200px",
-        backgroundSize: "cover",
-        backgroundColor: "#f3f3f3"
-      },
+      className: "searchCardImg",
       src: imageUrl || "#"
-    }), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Content, null, /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Title, null, (0, _htmlReactParser.default)(searchTitle || /*#__PURE__*/_react.default.createElement("p", null, "Item data"))), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Description, null, /*#__PURE__*/_react.default.createElement("div", {
+    }), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Content, null, /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Title, {
+      className: "text-dec-none"
+    }, (0, _htmlReactParser.default)(searchTitle || /*#__PURE__*/_react.default.createElement("p", null, "Item data"))), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Description, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "row"
     }, /*#__PURE__*/_react.default.createElement("figure", {
       class: "figure d-flex justify-content-space-evenly",
@@ -167,14 +163,10 @@ const SearchWrapper = _ref => {
       }
     }, /*#__PURE__*/_react.default.createElement("img", {
       src: userProfilePicture,
-      class: "figure-img img-rounded rounded",
-      alt: "...",
-      style: {
-        width: "3rem",
-        marginRight: "8px"
-      }
+      class: "figure-img searchUserProfile",
+      alt: "..."
     }), /*#__PURE__*/_react.default.createElement("figcaption", {
-      class: "figure-caption text-start pl-2"
+      class: "figure-caption text-start pl-2 text-dec-none"
     }, /*#__PURE__*/_react.default.createElement("p", null, "@", twaaUsername), /*#__PURE__*/_react.default.createElement("p", null, userName))))))));
   };
 
@@ -191,7 +183,7 @@ const SearchWrapper = _ref => {
       });
     }
   }, /*#__PURE__*/_react.default.createElement("nav", {
-    className: "navbar navbar-expand-lg navbar-light bg-light px-4"
+    className: "navbar navbar-expand-lg navbar-light bg-white px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "navbar-brand",
     href: "/"

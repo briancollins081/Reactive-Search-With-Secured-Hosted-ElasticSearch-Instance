@@ -28,3 +28,21 @@ code {
 .color-secondary {
     color: #d5a10f;
 }
+
+.searchCardImg {
+    height: 100px !important;
+    width: 200px !important;
+    min-width: 200px !important;
+    background-size: cover !important;
+    background-color: #f3f3f3;
+}
+
+.searchUserProfile {
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    object-fit: cover;
+    -o-object-fit: cover;
+    object-position: center;
+    -o-object-position: center;
+}
