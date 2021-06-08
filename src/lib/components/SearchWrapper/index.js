@@ -142,7 +142,7 @@ const SearchWrapper = ({
               {parseHTML(searchTitle || <p>Item data</p>)}
             </ResultList.Title>
             <ResultList.Description>
-              <div className="row">
+              <div className="d-block">
                 <figure
                   class="figure d-flex justify-content-space-evenly"
                   style={{ width: "12rem" }}
@@ -355,12 +355,15 @@ const SearchWrapper = ({
                 ],
               }}
               renderError={(error) => (
-                <div>
-                  Something went wrong with ResultList!
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <p className="py-2 px-4 mx-auto">
+                    Oops! Something went wrong, try again after sometime.
+                    {/* <br /> */}
+                    {/* Error details
                   <br />
-                  Error details
-                  <br />
-                  {JSON.stringify(error)}
+                  {JSON.stringify(error)} */}
+                  </p>
+                  <button className="btn btn-sm btn_twaablue">Timeline</button>
                 </div>
               )}
             />

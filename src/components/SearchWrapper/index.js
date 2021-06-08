@@ -144,7 +144,6 @@ const SearchWrapper = () => {
                     src={userProfilePicture}
                     class="figure-img searchUserProfile"
                     alt="..."
-                    
                   />
                   <figcaption class="figure-caption text-start pl-2 text-dec-none">
                     <p>@{twaaUsername}</p>
@@ -163,6 +162,7 @@ const SearchWrapper = () => {
       <ReactiveBase
         app="articles,counsellors,events,forums,groupsopen,groupsprivate,mentees,mentors,organizations,speakers,timelineposts,tstoreproducts,tstoreservices,twaabooks,users,videos"
         // app="timelineposts"
+        // url={process.env.REACT_APP_ELASTIC_SEARCH_ENDPOINT}
         url={process.env.REACT_APP_ELASTIC_SEARCH_ENDPOINT}
         // credentials={`${process.env.REACT_APP_ELASTIC_USER_NAME}:${process.env.REACT_APP_ELASTIC_USER_PASSWORD}`}
         // credentials={"elastic:bR4GQWvXFpL8tPrD9Jjd"}
@@ -358,12 +358,22 @@ const SearchWrapper = () => {
                 ],
               }}
               renderError={(error) => (
-                <div>
-                  Something went wrong with ResultList!
-                  <br />
-                  Error details
-                  <br />
-                  {JSON.stringify(error)}
+                // <div>
+                //   Something went wrong with ResultList!
+                //   <br />
+                //   Error details
+                //   <br />
+                //   {JSON.stringify(error)}
+                // </div>
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <p className="py-2 px-4 mx-auto">
+                    Oops! Something went wrong, try again after sometime.
+                    {/* <br /> */}
+                    {/* Error details
+                <br />
+                {JSON.stringify(error)} */}
+                  </p>
+                  <button className="btn btn-sm btn_twaablue">Timeline</button>
                 </div>
               )}
             />
