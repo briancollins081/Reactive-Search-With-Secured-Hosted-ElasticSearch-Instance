@@ -155,7 +155,7 @@ const SearchWrapper = _ref => {
     }), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Content, null, /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Title, {
       className: "text-dec-none"
     }, (0, _htmlReactParser.default)(searchTitle || /*#__PURE__*/_react.default.createElement("p", null, "Item data"))), /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Description, null, /*#__PURE__*/_react.default.createElement("div", {
-      className: "row"
+      className: "d-block"
     }, /*#__PURE__*/_react.default.createElement("figure", {
       class: "figure d-flex justify-content-space-evenly",
       style: {
@@ -327,7 +327,13 @@ const SearchWrapper = _ref => {
     react: {
       and: ["creationYearReactor", "creationMonthReactor", "creationDayReactor", "searchCategoryReactor", "nameReactor"]
     },
-    renderError: error => /*#__PURE__*/_react.default.createElement("div", null, "Something went wrong with ResultList!", /*#__PURE__*/_react.default.createElement("br", null), "Error details", /*#__PURE__*/_react.default.createElement("br", null), JSON.stringify(error))
+    renderError: error => /*#__PURE__*/_react.default.createElement("div", {
+      className: "d-flex flex-column justify-content-center align-items-center"
+    }, /*#__PURE__*/_react.default.createElement("p", {
+      className: "py-2 px-4 mx-auto"
+    }, "Oops! Something went wrong, try again after sometime."), /*#__PURE__*/_react.default.createElement("button", {
+      className: "btn btn-sm btn_twaablue"
+    }, "Timeline"))
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-8 col-lg-3 col-md-3 col-sm-6 scroll position-relative"
   }, /*#__PURE__*/_react.default.createElement("div", {
