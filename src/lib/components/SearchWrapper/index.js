@@ -135,6 +135,8 @@ const SearchWrapper = ({
           onClick={() => {
             history.push(itemPath);
           }}
+          target="_top"
+          href="#"
         >
           <ResultList.Image className="searchCardImg" src={imageUrl || "#"} />
           <ResultList.Content>
@@ -165,7 +167,7 @@ const SearchWrapper = ({
     );
   };
   return (
-    <div className="container-fluid">
+    <div className="w-100 overflow-hidden">
       <ReactiveBase
         app={INDICES_STRING_COMMA_SEPARATED}
         url={ELASTIC_SEARCH_APP_URL}
@@ -179,8 +181,22 @@ const SearchWrapper = ({
             },
           };
         }}
+        theme={{
+          typography: {
+            fontFamily: '"Nunito", sans-serif',
+            fontSize: "16px",
+          },
+
+          colors: {
+            textColor: "#424242",
+            primaryTextColor: "#fff",
+            primaryColor: "#0B6AFF",
+            titleColor: "#424242",
+            alertColor: "#d9534f",
+          },
+        }}
       >
-        <nav className="navbar navbar-expand-lg navbar-light bg-white px-4">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white px-0">
           <Link className="navbar-brand" href="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -259,16 +275,16 @@ const SearchWrapper = ({
           <div className="links">
             <Link
               to="/"
-              className="btn text-primary twaabluecolor"
+              className="btn twaabluecolor"
               rel="noreferrer"
             >
               <i class="fa fa-envelope-open" aria-hidden="true"></i>
-              &nbsp;Timeline
+              &nbsp;Home
             </Link>
             &nbsp;&nbsp;
-            <Link to="/myprofile" className="btn text-primary" rel="noreferrer">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-              &nbsp;My Profile
+            <Link to="/twalineissues" className="btn twaabluecolor" rel="noreferrer">
+              <i class="fa fa-question-circle" aria-hidden="true"></i>
+              &nbsp;Twaaline
             </Link>
           </div>
         </nav>
@@ -309,6 +325,7 @@ const SearchWrapper = ({
                     <div className="ml-auto text-muted">{count}</div>
                   </div>
                 )}
+                
               />
             </div>
             <div className="box mt-4">
@@ -366,6 +383,7 @@ const SearchWrapper = ({
                   <button className="btn btn-sm btn_twaablue">Timeline</button>
                 </div>
               )}
+              className="resultsList"
             />
           </div>
           <div className="col-8 col-lg-3 col-md-3 col-sm-6 scroll position-relative">
