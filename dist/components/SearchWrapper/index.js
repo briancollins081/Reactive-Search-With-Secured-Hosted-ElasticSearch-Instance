@@ -148,7 +148,9 @@ const SearchWrapper = _ref => {
       className: "cursor_pointer",
       onClick: () => {
         history.push(itemPath);
-      }
+      },
+      target: "_top",
+      href: "#"
     }, /*#__PURE__*/_react.default.createElement(_reactivesearch.ResultList.Image, {
       className: "searchCardImg",
       src: imageUrl || "#"
@@ -171,7 +173,7 @@ const SearchWrapper = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "container-fluid"
+    className: "w-100 overflow-hidden"
   }, /*#__PURE__*/_react.default.createElement(_reactivesearch.ReactiveBase, {
     app: INDICES_STRING_COMMA_SEPARATED,
     url: ELASTIC_SEARCH_APP_URL,
@@ -181,9 +183,22 @@ const SearchWrapper = _ref => {
       return _objectSpread(_objectSpread({}, request), {}, {
         headers: _objectSpread({}, headers)
       });
+    },
+    theme: {
+      typography: {
+        fontFamily: '"Nunito", sans-serif',
+        fontSize: "16px"
+      },
+      colors: {
+        textColor: "#424242",
+        primaryTextColor: "#fff",
+        primaryColor: "#0B6AFF",
+        titleColor: "#424242",
+        alertColor: "#d9534f"
+      }
     }
   }, /*#__PURE__*/_react.default.createElement("nav", {
-    className: "navbar navbar-expand-lg navbar-light bg-white px-4"
+    className: "navbar navbar-expand-lg navbar-light bg-white px-0"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "navbar-brand",
     href: "/"
@@ -242,19 +257,19 @@ const SearchWrapper = _ref => {
     className: "links"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/",
-    className: "btn text-primary twaabluecolor",
+    className: "btn twaabluecolor",
     rel: "noreferrer"
   }, /*#__PURE__*/_react.default.createElement("i", {
     class: "fa fa-envelope-open",
     "aria-hidden": "true"
-  }), "\xA0Timeline"), "\xA0\xA0", /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/myprofile",
-    className: "btn text-primary",
+  }), "\xA0Home"), "\xA0\xA0", /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/twalineissues",
+    className: "btn twaabluecolor",
     rel: "noreferrer"
   }, /*#__PURE__*/_react.default.createElement("i", {
-    class: "fa fa-user-circle",
+    class: "fa fa-question-circle",
     "aria-hidden": "true"
-  }), "\xA0My Profile"))), /*#__PURE__*/_react.default.createElement("div", {
+  }), "\xA0Twaaline"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "row bg-white"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-8 col-lg-3 col-md-3 col-sm-4 scroll"
@@ -333,7 +348,8 @@ const SearchWrapper = _ref => {
       className: "py-2 px-4 mx-auto"
     }, "Oops! Something went wrong, try again after sometime."), /*#__PURE__*/_react.default.createElement("button", {
       className: "btn btn-sm btn_twaablue"
-    }, "Timeline"))
+    }, "Timeline")),
+    className: "resultsList"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-8 col-lg-3 col-md-3 col-sm-6 scroll position-relative"
   }, /*#__PURE__*/_react.default.createElement("div", {

@@ -1,8 +1,6 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: "Nunito", sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -45,4 +43,23 @@ code {
     -o-object-fit: cover;
     object-position: center;
     -o-object-position: center;
+}
+
+.resultsList h2{
+    font-weight: 600;
+}
+.box h2 {
+    font-weight: bold !important;
+
+}
+
+.box ul li {
+    padding-right: 10px;
+    /* font-weight: 500; */
+}
+
+.resultsList>div>div>a,
+.resultsList>div>div a:hover {
+    text-decoration: none !important;
+    color: red;
 }
