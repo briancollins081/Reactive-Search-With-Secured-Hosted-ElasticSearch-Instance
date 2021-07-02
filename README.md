@@ -1,5 +1,11 @@
 # Getting Started Reactive Search UI with a Local | Hosted ElasticSearch Instance
 
+***This is a test plugin, note it is only for reference purposes only***
+
+May be later on it can be made usable for dynamic cases
+
+...
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
